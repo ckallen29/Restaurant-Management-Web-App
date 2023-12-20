@@ -15,7 +15,7 @@ A.  Create your subgroup and project by logging into GitLab using the web link p
 B.  Create a README file that includes notes describing where in the code to find the changes you made for each of parts C to J. Each note should include the prompt, file name, line number, and change.
 
 README.md
-Added README.md and begin tracking changes made per assignment requirement under each section
+All: Added README.md and begin tracking changes made per assignment requirement under each section
 
 C.  Customize the HTML user interface for your customer’s application. The user interface should include the shop name, the product names, and the names of the parts.
     Note: Do not remove any elements that were included in the screen. You may add any additional elements you would like or any images, colors, and styles, although it is not required.
