@@ -53,6 +53,9 @@ mainscreen.html
 confirmationbuyproduct.html
 All: Added purchase confirmation page after "Buy Now" confirmation with navigation back to mainscreen
 
+errorbuyproduct.html
+All: Added purchase error after "Buy Now" confirmation, triggered when inventory of product is 0 and cannot be purchased, with navigation back to mainscreen
+
 ProductServiceImpl.java
 69-84: Created "buyProduct" method to decrement product inventory in repository, taking the productId as a parameter, referencing the object, getting the inventory count, decrementing by 1, setting the inventory count, and saving the object back to the repository
 
@@ -60,7 +63,8 @@ ProductService.java
 20: Added "buyProduct" method to interface
 
 AddProductController.java
-124-131: Created the controller for the "buyProduct" method, passing in the ProductId parameter and creating a productService referencing the ProductServiceImpl as a class, then redirecting to the product purchase confirmation page if purchase is confirmed and decrementing inventory of the product
+32-33: Injected ProductRepository into controller
+129-149: Created the controller for the "buyProduct" method, passing in the ProductId parameter and creating a productService referencing the ProductServiceImpl as a class, checks the inv attribute is greater than 0, then redirecting to the product purchase confirmation page if purchase is confirmed and decrementing inventory of the product; if not, redirects to the product purchase error page
 
 G.  Modify the parts to track maximum and minimum inventory by doing the following:
     •  Add additional fields to the part entity for maximum and minimum inventory.

@@ -67,19 +67,20 @@ public class ProductServiceImpl implements ProductService{
         return (List<Product>) productRepository.findAll();
     }
 
-    @Override
     public void buyProduct(long productId) {
         Optional<Product> result = productRepository.findById(productId);
 
         if (result.isPresent()) {
             Product product = result.get();
-
             int currentInv = product.getInv();
-            int newInv = Math.max(0, currentInv - 1);
 
-            product.setInv(newInv);
+            if (currentInv > 0) {
+                int newInv = Math.max(0, currentInv - 1);
 
-            productRepository.save(product);
+                product.setInv(newInv);
+
+                productRepository.save(product);
+            }
         }
     }
 }

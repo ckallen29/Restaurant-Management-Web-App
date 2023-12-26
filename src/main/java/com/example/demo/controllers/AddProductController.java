@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
+import com.example.demo.repositories.ProductRepository;
 import com.example.demo.service.PartService;
 import com.example.demo.service.PartServiceImpl;
 import com.example.demo.service.ProductService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -27,6 +29,8 @@ import java.util.List;
 public class AddProductController {
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private ProductRepository productRepository;
     private PartService partService;
     private List<Part> theParts;
     private static Product product1;
@@ -123,11 +127,26 @@ public class AddProductController {
     }
 
     @GetMapping("/buyProduct")
-    public String buyProduct(@RequestParam("productID") int theId) {
+    public String buyProduct(@RequestParam("productID") int theId, Model theModel) {
         ProductService productService = context.getBean(ProductServiceImpl.class);
-        productService.buyProduct(theId);
+        //productService.buyProduct(theId);
 
-        return "confirmationbuyproduct";
+        Optional<Product> result = productRepository.findById((long) theId);
+
+        if (result.isPresent()) {
+            Product product = result.get();
+            int currentInv = product.getInv();
+
+            if (currentInv > 0) {
+                productService.buyProduct(theId);
+                return "confirmationbuyproduct";
+            } else {
+                return "errorbuyproduct";
+            }
+        }
+
+        //return "confirmationbuyproduct";
+        return null;
     }
 
     public AddProductController(PartService partService) {
