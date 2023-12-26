@@ -47,6 +47,21 @@ F.  Add a “Buy Now” button to your product list. Your “Buy Now” button m
     •  The button should decrement the inventory of that product by one. It should not affect the inventory of the associated parts.
     •  Display a message that indicates the success or failure of a purchase.
 
+mainscreen.html
+91-92: Added "Buy Now" button to product list next to "Update" and "Delete" buttons
+
+confirmationbuyproduct.html
+All: Added purchase confirmation page after "Buy Now" confirmation with navigation back to mainscreen
+
+ProductServiceImpl.java
+69-84: Created "buyProduct" method to decrement product inventory in repository, taking the productId as a parameter, referencing the object, getting the inventory count, decrementing by 1, setting the inventory count, and saving the object back to the repository
+
+ProductService.java
+20: Added "buyProduct" method to interface
+
+AddProductController.java
+124-131: Created the controller for the "buyProduct" method, passing in the ProductId parameter and creating a productService referencing the ProductServiceImpl as a class, then redirecting to the product purchase confirmation page if purchase is confirmed and decrementing inventory of the product
+
 G.  Modify the parts to track maximum and minimum inventory by doing the following:
     •  Add additional fields to the part entity for maximum and minimum inventory.
     •  Modify the sample inventory to include the maximum and minimum fields.

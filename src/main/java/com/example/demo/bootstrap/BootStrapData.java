@@ -68,10 +68,10 @@ public class BootStrapData implements CommandLineRunner {
             System.out.println(thePart.getCompanyName());
             */
 
-            /*
+
             OutsourcedPart strawberries= new OutsourcedPart();
             strawberries.setCompanyName("Cane Farms");
-            strawberries.setName("strawberries");
+            strawberries.setName("Strawberries");
             strawberries.setInv(5);
             strawberries.setPrice(10.0);
             strawberries.setId(100L);
@@ -79,7 +79,7 @@ public class BootStrapData implements CommandLineRunner {
 
             OutsourcedPart sprinkles= new OutsourcedPart();
             sprinkles.setCompanyName("Deco Co.");
-            sprinkles.setName("sprinkles");
+            sprinkles.setName("Sprinkles");
             sprinkles.setInv(5);
             sprinkles.setPrice(2.0);
             sprinkles.setId(200L);
@@ -87,7 +87,7 @@ public class BootStrapData implements CommandLineRunner {
 
             OutsourcedPart nuts= new OutsourcedPart();
             nuts.setCompanyName("Cane Farms");
-            nuts.setName("nuts");
+            nuts.setName("Chopped Nuts");
             nuts.setInv(5);
             nuts.setPrice(7.0);
             nuts.setId(300L);
@@ -95,7 +95,7 @@ public class BootStrapData implements CommandLineRunner {
 
             OutsourcedPart cherries= new OutsourcedPart();
             cherries.setCompanyName("Cane Farms");
-            cherries.setName("cherries");
+            cherries.setName("Cherries");
             cherries.setInv(5);
             cherries.setPrice(10.0);
             cherries.setId(400L);
@@ -103,7 +103,7 @@ public class BootStrapData implements CommandLineRunner {
 
             OutsourcedPart flowers= new OutsourcedPart();
             flowers.setCompanyName("Deco Co.");
-            flowers.setName("flowers");
+            flowers.setName("Frosting Flowers");
             flowers.setInv(5);
             flowers.setPrice(15.0);
             flowers.setId(400L);
@@ -116,29 +116,29 @@ public class BootStrapData implements CommandLineRunner {
             OutsourcedPart partFlowers = null;
             List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
             for(OutsourcedPart part:outsourcedParts){
-                if(part.getName().equals("strawberries")) {
+                if(part.getName().equals("Strawberries")) {
                     partStrawberries = part;
                     System.out.println(partStrawberries.getCompanyName());
                 }
-                else if(part.getName().equals("sprinkles")) {
+                else if(part.getName().equals("Sprinkles")) {
                     partSprinkles = part;
                     System.out.println(partSprinkles.getCompanyName());
                 }
-                else if(part.getName().equals("nuts")) {
+                else if(part.getName().equals("Chopped Nuts")) {
                     partNuts = part;
                     System.out.println(partNuts.getCompanyName());
                 }
-                else if(part.getName().equals("cherries")) {
+                else if(part.getName().equals("Cherries")) {
                     partCherries = part;
                     System.out.println(partCherries.getCompanyName());
                 }
-                else if(part.getName().equals("flowers")) {
+                else if(part.getName().equals("Frosting Flowers")) {
                     partFlowers = part;
                     System.out.println(partFlowers.getCompanyName());
                 }
             }
         }
-        */
+
 
 
         List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
@@ -146,21 +146,19 @@ public class BootStrapData implements CommandLineRunner {
             System.out.println(part.getName()+" "+part.getCompanyName());
         }
 
-        /*
         int productCount = (int) productRepository.count();
         if (productCount == 0) {
-            Product round= new Product("round",25.0,15);
-            Product sheet= new Product("sheet",25.0,15);
-            Product cupcakes= new Product("cupcakes",25.0,15);
-            Product cookies= new Product("cookies",25.0,15);
-            Product brownies= new Product("brownies",25.0,15);
+            Product round= new Product("Round Cake",25.0,15);
+            Product sheet= new Product("Sheet Cake",20.0,15);
+            Product cupcakes= new Product("Cupcakes, 12",25.0,15);
+            Product cookies= new Product("Cookies, 12",15.0,15);
+            Product brownies= new Product("Brownies, 6",20.0,15);
             productRepository.save(round);
             productRepository.save(sheet);
             productRepository.save(cupcakes);
             productRepository.save(cookies);
             productRepository.save(brownies);
         }
-        */
 
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Products"+productRepository.count());
