@@ -5,11 +5,28 @@
     <meta charset="UTF-8">
     <title>Part Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+        function validateInv() {
+            var invInput = document.getElementById("inv");
+            var maxInvInput = document.getElementById("maxInv");
+
+            var invValue = parseInt(invInput.value, 10);
+            var maxInvValue = parseInt(maxInvInput.value, 10);
+
+            if (invValue > maxInvValue) {
+                alert("Inventory must be less than max");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
 <h1>Outsourced Part Detail</h1>
 
-<form action="#" th:action="@{/showFormAddOutPart}" th:object="${outsourcedpart}" method="POST"}>
+<!-- add onsubmit to call function to check inv against maxInv -->
+<form action="#" th:action="@{/showFormAddOutPart}" th:object="${outsourcedpart}" method="POST" onsubmit="return validateInv()"}>
 
 <!-- Add hidden form field to handle update -->
     <p><input type="hidden" th:field="*{id}"/></p>
@@ -19,8 +36,14 @@
 <p><input type="text" th:field="*{price}" placeholder= "Price" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
-<p><input type="text" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
+<p><input type="text" id="inv" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
+
+    <p><input type="text" id="maxInv" th:field="*{maxInv}" placeholder="Max Inventory" class="form-control mb-4 col-4"/></p>
+    <p th:if="${#fields.hasErrors('maxInv')}" th:errors="*{maxInv}">Inventory Error</p>
+
+    <p><input type="text" th:field="*{minInv}" placeholder="Min Inventory" class="form-control mb-4 col-4"/></p>
+    <p th:if="${#fields.hasErrors('minInv')}" th:errors="*{minInv}">Inventory Error</p>
 
     <p><input type="text" th:field="*{companyName}" placeholder="Company Name" class="form-control mb-4 col-4"/></p>
 

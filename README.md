@@ -73,6 +73,27 @@ G.  Modify the parts to track maximum and minimum inventory by doing the followi
     •  Rename the file the persistent storage is saved to.
     •  Modify the code to enforce that the inventory is between or at the minimum and maximum value.
 
+Part.java
+32-34: Added maxInv and minInv attributes to Part class with error message on min value
+49-50, 58-59: Added maxInv and minInv to both class constructors
+93-100: Created getter and setter methods for maxInv and minInv
+
+BootStrapData.java
+76-77, 86-87, 96-97, 106-107, 116-117: Modified sample inventory to include max and min inventory fields for each part
+
+OutsourcedPartForm.html
+8-23: Created javascript function to check inv against maxInv and throw an alert when failed
+28-29: Added onsubmit functionality to form to run validateInv()
+42-47: Added id's to "inv" and "maxInv" for easy selection, added "maxInv" and "minInv" input fields
+
+InhousePartForm.html
+8-23: Created javascript function to check inv against maxInv and throw an alert when failed
+27-29: Added onsubmit functionality to form to run validateInv()
+42-47: Added id's to "inv" and "maxInv" for easy selection, added "maxInv" and "minInv" input fields
+
+application.properties
+6: Renamed the file of persistent storage to "d287-db"
+
 H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
     •  Display error messages for low inventory when adding and updating parts if the inventory is less than the minimum number of parts.
     •  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.

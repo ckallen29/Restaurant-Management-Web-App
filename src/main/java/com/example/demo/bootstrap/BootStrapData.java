@@ -73,6 +73,8 @@ public class BootStrapData implements CommandLineRunner {
             strawberries.setCompanyName("Cane Farms");
             strawberries.setName("Strawberries");
             strawberries.setInv(5);
+            strawberries.setMaxInv(20);
+            strawberries.setMinInv(0);
             strawberries.setPrice(10.0);
             strawberries.setId(100L);
             outsourcedPartRepository.save(strawberries);
@@ -81,6 +83,8 @@ public class BootStrapData implements CommandLineRunner {
             sprinkles.setCompanyName("Deco Co.");
             sprinkles.setName("Sprinkles");
             sprinkles.setInv(5);
+            sprinkles.setMaxInv(30);
+            sprinkles.setMinInv(0);
             sprinkles.setPrice(2.0);
             sprinkles.setId(200L);
             outsourcedPartRepository.save(sprinkles);
@@ -89,6 +93,8 @@ public class BootStrapData implements CommandLineRunner {
             nuts.setCompanyName("Cane Farms");
             nuts.setName("Chopped Nuts");
             nuts.setInv(5);
+            nuts.setMaxInv(20);
+            nuts.setMinInv(0);
             nuts.setPrice(7.0);
             nuts.setId(300L);
             outsourcedPartRepository.save(nuts);
@@ -97,6 +103,8 @@ public class BootStrapData implements CommandLineRunner {
             cherries.setCompanyName("Cane Farms");
             cherries.setName("Cherries");
             cherries.setInv(5);
+            cherries.setMaxInv(20);
+            cherries.setMinInv(0);
             cherries.setPrice(10.0);
             cherries.setId(400L);
             outsourcedPartRepository.save(cherries);
@@ -105,6 +113,8 @@ public class BootStrapData implements CommandLineRunner {
             flowers.setCompanyName("Deco Co.");
             flowers.setName("Frosting Flowers");
             flowers.setInv(5);
+            flowers.setMaxInv(30);
+            flowers.setMinInv(0);
             flowers.setPrice(15.0);
             flowers.setId(400L);
             outsourcedPartRepository.save(flowers);
