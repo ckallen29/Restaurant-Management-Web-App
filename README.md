@@ -132,6 +132,3 @@ InhousePartService.java
 
 InhousePartServiceImpl.java
 58-62: public void deleteById(int theId)
-
-
-K.  Demonstrate professional communication in the content and presentation of your submission.
