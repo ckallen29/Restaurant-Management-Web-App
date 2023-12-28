@@ -32,7 +32,6 @@ public class AddProductController {
     @Autowired
     private ProductRepository productRepository;
     private PartService partService;
-    private List<Part> theParts;
     private static Product product1;
     private Product product;
 

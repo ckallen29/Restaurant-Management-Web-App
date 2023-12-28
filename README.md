@@ -115,4 +115,23 @@ PartTest.java
 
 J.  Remove the class files for any unused validators in order to clean your code.
 
+The following documents each instance of a removed class file and what line it was removed from…
+
+AddProductController.java
+35: private List<Part> theParts;
+
+MainScreenControllerr.java
+25: Remove private final PartRepository partRepository;
+26: private final ProductRepository productRepository;'
+31: private List<Part> theParts;
+32: private List<Product> theProducts;
+34-37: public MainScreenControllerr(PartRepository partRepository, ProductRepository productRepository)
+
+InhousePartService.java
+19: public void deleteById(int theId);
+
+InhousePartServiceImpl.java
+58-62: public void deleteById(int theId)
+
+
 K.  Demonstrate professional communication in the content and presentation of your submission.
