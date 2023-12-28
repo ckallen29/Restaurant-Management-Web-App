@@ -56,6 +56,16 @@ public class AddOutsourcedPartController {
                 bindingResult.rejectValue("inv", "inv.min", "Inventory must be above minimum");
                 return "OutsourcedPartForm";
             }
+
+            if (part.getMinInv() > part.getMaxInv()) {
+                bindingResult.rejectValue("minInv", "inv.min", "Minimum must be less than max");
+                return "OutsourcedPartForm";
+            }
+
+            if (part.getMaxInv() < part.getMinInv()) {
+                bindingResult.rejectValue("maxInv", "inv.max", "Max must be above minimum");
+                return "OutsourcedPartForm";
+            }
         }
 
         if(op!=null)part.setProducts(op.getProducts());

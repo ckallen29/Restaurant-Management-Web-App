@@ -110,6 +110,9 @@ AddOutsourcedPartController.java, AddInhousePartController.java
 
 I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
 
+PartTest.java
+103-138: Create tests for getMaxInv, setMaxInv, getMinInv, and setMinInv
+
 J.  Remove the class files for any unused validators in order to clean your code.
 
 K.  Demonstrate professional communication in the content and presentation of your submission.

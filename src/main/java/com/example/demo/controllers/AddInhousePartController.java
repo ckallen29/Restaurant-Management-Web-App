@@ -55,6 +55,16 @@ public class AddInhousePartController{
                     theBindingResult.rejectValue("inv", "inv.min", "Inventory must be above minimum");
                     return "InhousePartForm";
                 }
+
+                if (part.getMinInv() > part.getMaxInv()) {
+                    theBindingResult.rejectValue("minInv", "inv.min", "Minimum must be less than max");
+                    return "InhousePartForm";
+                }
+
+                if (part.getMaxInv() < part.getMinInv()) {
+                    theBindingResult.rejectValue("maxInv", "inv.max", "Max must be above minimum");
+                    return "InhousePartForm";
+                }
             }
 
             if(ip!=null)part.setProducts(ip.getProducts());
