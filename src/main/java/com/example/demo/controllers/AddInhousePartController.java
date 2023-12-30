@@ -45,13 +45,17 @@ public class AddInhousePartController{
         else{
         InhousePartService repo=context.getBean(InhousePartServiceImpl.class);
         InhousePart ip=repo.findById((int)part.getId());
+            if (part.getInv() > part.getMaxInv()) {
+                theBindingResult.rejectValue("inv", "inv.max", "Inventory cannot exceed max");
+                return "InhousePartForm";
+            }
             if (ip != null) {
-                if (part.getInv() > ip.getMaxInv()) {
+                if (part.getInv() > part.getMaxInv()) {
                     theBindingResult.rejectValue("inv", "inv.max", "Inventory cannot exceed max");
                     return "InhousePartForm";
                 }
 
-                if (part.getInv() < ip.getMinInv()) {
+                if (part.getInv() < part.getMinInv()) {
                     theBindingResult.rejectValue("inv", "inv.min", "Inventory must be above minimum");
                     return "InhousePartForm";
                 }
