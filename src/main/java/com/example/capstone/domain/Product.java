@@ -6,6 +6,7 @@ import com.example.capstone.validators.ValidProductPrice;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,14 +23,15 @@ import java.util.Set;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    String name;
+    private long id;
+    private String name;
     @Min(value = 0, message = "Price value must be positive")
-    double price;
+    private double price;
     @Min(value = 0, message = "Inventory value must be positive")
-    int inv;
+    private int inv;
+    private LocalDateTime dateCreated;
     @ManyToMany(cascade=CascadeType.ALL, mappedBy = "products")
-    Set<Part> parts= new HashSet<>();
+    private Set<Part> parts= new HashSet<>();
 
     public Product() {
     }
@@ -77,6 +79,14 @@ public class Product implements Serializable {
 
     public void setInv(int inv) {
         this.inv = inv;
+    }
+
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public Set<Part> getParts() {

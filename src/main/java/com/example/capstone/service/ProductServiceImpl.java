@@ -16,10 +16,10 @@ import java.util.Optional;
  */
 @Service
 public class ProductServiceImpl implements ProductService{
+    @Autowired
     private ProductRepository productRepository;
 
     @Autowired
-
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService{
     }
     public List<Product> listAll(String keyword){
         if(keyword !=null){
-            return productRepository.search(keyword);
+            return productRepository.findByNameContainingIgnoreCase(keyword);
         }
         return (List<Product>) productRepository.findAll();
     }

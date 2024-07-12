@@ -1,6 +1,7 @@
 package com.example.capstone.service;
 
 import com.example.capstone.domain.Part;
+import com.example.capstone.domain.Product;
 import com.example.capstone.repositories.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +32,11 @@ public class PartServiceImpl implements PartService{
     }
     public List<Part> listAll(String keyword){
         if(keyword !=null){
-            return partRepository.search(keyword);
+            return partRepository.findByNameContainingIgnoreCase(keyword);
         }
         return (List<Part>) partRepository.findAll();
     }
+
     @Override
     public Part findById(int theId) {
         Long theIdl=(long)theId;
