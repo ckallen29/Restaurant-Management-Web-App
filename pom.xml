@@ -64,7 +64,53 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
+
+		<!-- JDBC driver for RDS -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
+
+	<profiles>
+		<!-- Profile for local H2 database -->
+		<profile>
+			<id>local</id>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+				<!-- Additional local dependencies can be added here -->
+			</dependencies>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<!-- Profile for AWS DynamoDB -->
+		<profile>
+			<id>dynamo</id>
+			<dependencies>
+				<!-- AWS SDK and DynamoDB dependencies -->
+				<dependency>
+					<groupId>com.amazonaws</groupId>
+					<artifactId>aws-java-sdk-dynamodb</artifactId>
+					<version>1.12.721</version>
+				</dependency>
+				<!--
+				<dependency>
+					<groupId>com.amazonaws</groupId>
+					<artifactId>amazon-dynamodb-encryption-java</artifactId>
+					<version>1.11.0</version>
+				</dependency>
+				-->
+				<!-- Additional AWS dependencies can be added here -->
+			</dependencies>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
