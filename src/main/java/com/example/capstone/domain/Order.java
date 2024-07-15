@@ -9,10 +9,10 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_order;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "id_user", nullable = false)
     private User user;
 
     @Column(nullable = false)
@@ -22,11 +22,11 @@ public class Order {
     private String orderNumber;
 
     public Long getId() {
-        return id;
+        return id_order;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long id_order) {
+        this.id_order = this.id_order;
     }
 
     public User getUser() {
