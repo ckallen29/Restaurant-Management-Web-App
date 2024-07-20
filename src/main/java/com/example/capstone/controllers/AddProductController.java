@@ -3,12 +3,11 @@ package com.example.capstone.controllers;
 import com.example.capstone.domain.Part;
 import com.example.capstone.domain.Product;
 import com.example.capstone.repositories.ProductRepository;
-import com.example.capstone.service.PartService;
-import com.example.capstone.service.PartServiceImpl;
-import com.example.capstone.service.ProductService;
-import com.example.capstone.service.ProductServiceImpl;
+import com.example.capstone.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +33,10 @@ public class AddProductController {
     private PartService partService;
     private static Product product1;
     private Product product;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/showFormAddProduct")
     public String showFormAddPart(Model theModel) {
@@ -130,6 +133,9 @@ public class AddProductController {
         ProductService productService = context.getBean(ProductServiceImpl.class);
         //productService.buyProduct(theId);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
         Optional<Product> result = productRepository.findById((long) theId);
 
         if (result.isPresent()) {
@@ -137,15 +143,23 @@ public class AddProductController {
             int currentInv = product.getInv();
 
             if (currentInv > 0) {
-                productService.buyProduct(theId);
-                return "confirmationbuyproduct";
+                try {
+                    orderService.createOrder(username);
+                    //reduce inv by 1
+                    product.setInv(currentInv - 1);
+                    productService.save(product);
+                    return "confirmationbuyproduct";
+                } catch (IllegalArgumentException e) {
+                    theModel.addAttribute("error", e.getMessage());
+                    return "errorbuyproduct";
+                }
             } else {
                 return "errorbuyproduct";
             }
         }
 
-        //return "confirmationbuyproduct";
-        return null;
+        return "confirmationbuyproduct";
+        //return null;
     }
 
     public AddProductController(PartService partService) {

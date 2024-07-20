@@ -26,4 +26,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         builder.roles("USER");  // Or load roles dynamically
         return builder.build();
     }
+
+    public User findByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+        return user;
+    }
 }

@@ -32,4 +32,8 @@ public class OrderService {
 
         return orderRepository.save(order);
     }
+
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
+    }
 }
