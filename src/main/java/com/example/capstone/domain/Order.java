@@ -21,6 +21,16 @@ public class Order {
     @Column(unique = true, nullable = false)
     private String orderNumber;
 
+    public Order() {
+    }
+
+    public Order(Long id_order, User user, LocalDateTime dateCreated, String orderNumber) {
+        this.id_order = id_order;
+        this.user = user;
+        this.dateCreated = dateCreated;
+        this.orderNumber = orderNumber;
+    }
+
     public Long getId() {
         return id_order;
     }

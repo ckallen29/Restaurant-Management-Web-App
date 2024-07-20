@@ -1,13 +1,16 @@
 package com.example.capstone.bootstrap;
 
+import com.example.capstone.domain.Order;
 import com.example.capstone.domain.OutsourcedPart;
 import com.example.capstone.domain.Product;
-import com.example.capstone.repositories.OutsourcedPartRepository;
-import com.example.capstone.repositories.PartRepository;
-import com.example.capstone.repositories.ProductRepository;
+import com.example.capstone.domain.User;
+import com.example.capstone.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -21,48 +24,31 @@ public class BootStrapData implements CommandLineRunner {
 
     private final PartRepository partRepository;
     private final ProductRepository productRepository;
-
     private final OutsourcedPartRepository outsourcedPartRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final OrderRepository orderRepository;
 
-    public BootStrapData(PartRepository partRepository, ProductRepository productRepository, OutsourcedPartRepository outsourcedPartRepository) {
+    public BootStrapData(PartRepository partRepository,
+                         ProductRepository productRepository,
+                         OutsourcedPartRepository outsourcedPartRepository,
+                         UserRepository userRepository,
+                         PasswordEncoder passwordEncoder,
+                         OrderRepository orderRepository) {
         this.partRepository = partRepository;
         this.productRepository = productRepository;
         this.outsourcedPartRepository=outsourcedPartRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.orderRepository = orderRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-
         int partCount = (int) partRepository.count();
         if (partCount == 0) {
-            /*
-            // create a new instance of the OutsourcedPart class
-            OutsourcedPart o= new OutsourcedPart();
-            // set properties of the OutsourcedPart instance
-            o.setCompanyName("Western Governors University");
-            o.setName("out test");
-            o.setInv(5);
-            o.setPrice(20.0);
-            o.setId(100L);
-            //save the OutsourcedPart instance to the outsourcedPartRepository
-            outsourcedPartRepository.save(o);
-            //declare a variable to store the retrieved OutsourcedPart
-            OutsourcedPart thePart=null;
-            //retrieve all OutsourcedPart instances from the repository
-            List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-            //iterate over the list of the OutsourcedPart instances
-            for(OutsourcedPart part:outsourcedParts){
-                //check if the name property of the current part is equal to "out test"
-                //if found, assign the current part to thePart
-                if(part.getName().equals("out test"))thePart=part;
-            }
-
-            //print the companyName property of the retrieved OutsourcedPart
-            System.out.println(thePart.getCompanyName());
-            */
-
-
+            // creates and saves new OutsourcedPart instances to repo
             OutsourcedPart strawberries= new OutsourcedPart();
             strawberries.setCompanyName("Cane Farms");
             strawberries.setName("Strawberries");
@@ -118,8 +104,10 @@ public class BootStrapData implements CommandLineRunner {
             OutsourcedPart partNuts = null;
             OutsourcedPart partCherries = null;
             OutsourcedPart partFlowers = null;
+
+            // retrieves and prints all OutsourcedPart instances from repo
             List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-            for(OutsourcedPart part:outsourcedParts){
+            for(OutsourcedPart part : outsourcedParts){
                 if(part.getName().equals("Strawberries")) {
                     partStrawberries = part;
                     System.out.println(partStrawberries.getCompanyName());
@@ -143,13 +131,12 @@ public class BootStrapData implements CommandLineRunner {
             }
         }
 
-
-
         List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
         for(OutsourcedPart part:outsourcedParts){
             System.out.println(part.getName()+" "+part.getCompanyName());
         }
 
+        // creates and saves new Product instances to repo
         int productCount = (int) productRepository.count();
         if (productCount == 0) {
             Product round= new Product("Round Cake",25.0,15);
@@ -162,6 +149,33 @@ public class BootStrapData implements CommandLineRunner {
             productRepository.save(cupcakes);
             productRepository.save(cookies);
             productRepository.save(brownies);
+        }
+
+        int userCount = (int) userRepository.count();
+        if (userCount == 0) {
+            User testUser = new User();
+            testUser.setUsername("user");
+            testUser.setPassword(passwordEncoder.encode("password"));
+            userRepository.save(testUser);
+        }
+
+        int orderCount = (int) orderRepository.count();
+        if (orderCount == 0) {
+            User testUser = userRepository.findByUsername("user");
+
+            if (testUser != null) {
+                LocalDateTime orderDate = LocalDateTime.of(2024, 7, 13, 0, 0);
+
+                Order order1 = new Order(1L, testUser, orderDate, "ORD001");
+                Order order2 = new Order(2L, testUser, orderDate, "ORD002");
+                Order order3 = new Order(3L, testUser, orderDate, "ORD003");
+
+                orderRepository.save(order1);
+                orderRepository.save(order2);
+                orderRepository.save(order3);
+            } else {
+                System.out.println("Some users are missing, orders cannot be created");
+            }
         }
 
         System.out.println("Started in Bootstrap");
