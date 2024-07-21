@@ -31,14 +31,16 @@ public class SecurityConfig {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login", "/resources/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/login", "/resources/**").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/mainscreen")
+                    .failureUrl("/login?error=true")
+                    .permitAll()
+                    .and()
                 .logout()
-                .permitAll();
+                    .permitAll();
     }
 }
