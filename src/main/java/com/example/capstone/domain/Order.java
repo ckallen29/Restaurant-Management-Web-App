@@ -36,7 +36,7 @@ public class Order {
     }
 
     public void setId(Long id_order) {
-        this.id_order = this.id_order;
+        this.id_order = id_order;
     }
 
     public User getUser() {
