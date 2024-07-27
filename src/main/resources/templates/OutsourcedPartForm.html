@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Part Form</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- custom CSS -->
+    <link href="/css/custom.css" rel="stylesheet">
+
     <!-- <script>
         function validateInv() {
             var invInput = document.getElementById("inv");
@@ -23,33 +27,39 @@
     </script> -->
 </head>
 <body>
-<h1>Outsourced Part Detail</h1>
+<div class="container">
+    <h1 class="form-name">Outsourced Part Detail</h1>
 
-<!-- add onsubmit to call function to check inv against maxInv -->
-<form action="#" th:action="@{/showFormAddOutPart}" th:object="${outsourcedpart}" method="POST" onsubmit="return validateInv()"}>
+    <!-- add onsubmit to call function to check inv against maxInv -->
+    <form class="create" action="#" th:action="@{/showFormAddOutPart}" th:object="${outsourcedpart}" method="POST"
+          onsubmit="return validateInv()" }>
 
-<!-- Add hidden form field to handle update -->
-    <p><input type="hidden" th:field="*{id}"/></p>
+        <!-- Add hidden form field to handle update -->
+        <p><input type="hidden" th:field="*{id}"/></p>
 
-<p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
+        <p>Part Name: <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
 
-<p><input type="text" th:field="*{price}" placeholder= "Price" class="form-control mb-4 col-4"/></p>
-    <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+        <p>Price ($): <input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4"/></p>
+        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
-<p><input type="text" id="inv" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
-    <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
+        <p>Inventory Amount: <input type="text" id="inv" th:field="*{inv}" placeholder="Inventory"
+                                    class="form-control mb-4 col-4"/></p>
+        <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
 
-    <p><input type="text" id="maxInv" th:field="*{maxInv}" placeholder="Max Inventory" class="form-control mb-4 col-4"/></p>
-    <p th:if="${#fields.hasErrors('maxInv')}" th:errors="*{maxInv}">Inventory Error</p>
+        <p>Max Inventory: <input type="text" id="maxInv" th:field="*{maxInv}" placeholder="Max Inventory"
+                                 class="form-control mb-4 col-4"/></p>
+        <p th:if="${#fields.hasErrors('maxInv')}" th:errors="*{maxInv}">Inventory Error</p>
 
-    <p><input type="text" th:field="*{minInv}" placeholder="Min Inventory" class="form-control mb-4 col-4"/></p>
-    <p th:if="${#fields.hasErrors('minInv')}" th:errors="*{minInv}">Inventory Error</p>
+        <p>Minimum Inventory: <input type="text" th:field="*{minInv}" placeholder="Min Inventory"
+                                     class="form-control mb-4 col-4"/></p>
+        <p th:if="${#fields.hasErrors('minInv')}" th:errors="*{minInv}">Inventory Error</p>
 
-    <p><input type="text" th:field="*{companyName}" placeholder="Company Name" class="form-control mb-4 col-4"/></p>
+        <p>Company Name: <input type="text" th:field="*{companyName}" placeholder="Company Name"
+                                class="form-control mb-4 col-4"/></p>
 
-<p><input type="submit" value="Submit" /></p>
-</form>
-<a href="http://localhost:8080/">Link
-    to Main Screen</a>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+    <a href="http://localhost:8080/">Return to Main Screen</a>
+</div>
 </body>
 </html>

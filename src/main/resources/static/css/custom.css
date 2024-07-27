@@ -57,6 +57,26 @@ header {
     padding: 0 5px;
 }
 
+h1.form-name {
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+form.create,
+form.report {
+    max-width: 350px;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+form p {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
 
 footer {
     margin-top: auto;

@@ -29,29 +29,31 @@
         </nav>
     </header>
 
-    <h1>Generate Reports</h1>
-    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-        <p th:text="${errorMessage}"></p>
-    </div>
-    <form th:action="@{/generateOrderReport}" method="post">
-        <div class="mb-3">
-            <label for="reportType" class="form-label">Report Type</label>
-            <select id="reportType" name="reportType" class="form-select" required>
-                <option value="allOrders">All Orders</option>
-                <option value="ordersByUser">Orders by User</option>
-                <option value="orderByOrderNumber">Order by Order Number</option>
-            </select>
+    <main>
+        <h1>Generate Reports</h1>
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <p th:text="${errorMessage}"></p>
         </div>
-        <div class="mb-3" id="userInput">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" id="username" name="username" class="form-control">
-        </div>
-        <div class="mb-3" id="orderInput">
-            <label for="orderNumber" class="form-label">Order Number</label>
-            <input type="text" id="orderNumber" name="orderNumber" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Generate Report</button>
-    </form>
+        <form class="report" th:action="@{/generateOrderReport}" method="post">
+            <div class="mb-3">
+                <label for="reportType" class="form-label">Report Type</label>
+                <select id="reportType" name="reportType" class="form-select" required>
+                    <option value="allOrders">All Orders</option>
+                    <option value="ordersByUser">Orders by User</option>
+                    <option value="orderByOrderNumber">Order by Order Number</option>
+                </select>
+            </div>
+            <div class="mb-3" id="userInput">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
+            <div class="mb-3" id="orderInput">
+                <label for="orderNumber" class="form-label">Order Number</label>
+                <input type="text" id="orderNumber" name="orderNumber" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Report</button>
+        </form>
+    </main>
 
     <footer>
         <p>&copy; 2024 Great Dane Bakery. All rights reserved.</p>
