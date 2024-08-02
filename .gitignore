@@ -33,4 +33,4 @@ build/
 .vscode/
 
 # Ignore secrets
-config.properties
+# config.properties
