@@ -11,21 +11,12 @@ import java.util.Properties;
 @SpringBootApplication
 public class DemoApplication {
 
+    public static final String DB_USERNAME = System.getenv("DB_USERNAME");
+    public static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
+
     public static void main(String[] args) {
-        Properties properties = new Properties();
-        try (InputStream inputStream = DemoApplication.class.getClassLoader().getResourceAsStream("config.properties")) {
-            if (inputStream == null) {
-                System.out.println("Unable to find config.properties");
-                return;
-            }
-            //load properties file
-            properties.load(inputStream);
-            //set properties as system properties
-            System.setProperty("DB_USERNAME", properties.getProperty("DB_USERNAME"));
-            System.setProperty("DB_PASSWORD", properties.getProperty("DB_PASSWORD"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        System.out.println(DB_USERNAME);
+        System.out.println(DB_PASSWORD);
 
         SpringApplication.run(DemoApplication.class, args);
     }
