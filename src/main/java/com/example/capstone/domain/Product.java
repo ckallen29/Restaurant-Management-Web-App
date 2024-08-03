@@ -20,7 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name="Products")
 @ValidProductPrice
-@ValidEnufParts
+//@ValidEnufParts
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
