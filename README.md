@@ -23,4 +23,4 @@ Password: password
 
 -"Buy Now": The user can create an order for a product by purchasing. This will add an order to the database associated with the username of the user who created the order, time of creation, etc.
 
--To generate reports on inventory and orders, navigate to the reporting portal using the link in the header. Generate a report of all orders, or orders by a specific user, or find a specific order by its order number. Reports are generated as a pdf that can be downloaded and printed for recording and audit purposes.
+-To generate reports on inventory and orders, navigate to the reporting portal using the link in the header. Generate a report of…all orders, orders by a specific user, or find a specific order by its order number. Reports are generated as a pdf that can be downloaded and printed for recording and audit purposes.
