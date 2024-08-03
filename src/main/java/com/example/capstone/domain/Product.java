@@ -5,6 +5,8 @@ import com.example.capstone.validators.ValidProductPrice;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -24,6 +26,7 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotBlank(message = "Please enter a name")
     private String name;
     @Min(value = 0, message = "Price value must be positive")
     private double price;

@@ -1,9 +1,11 @@
 package com.example.capstone.domain;
 
 import com.example.capstone.validators.ValidDeletePart;
+import com.example.capstone.validators.ValidInventoryRange;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,7 @@ import java.util.Set;
  */
 @Entity
 @ValidDeletePart
+//@ValidInventoryRange
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="part_type",discriminatorType = DiscriminatorType.INTEGER)
 @Table(name="Parts")
@@ -23,6 +26,7 @@ public abstract class Part implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    @NotBlank(message = "Please enter a name")
     String name;
     @Min(value = 0, message = "Price value must be positive")
     double price;
