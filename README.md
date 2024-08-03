@@ -9,7 +9,7 @@ Cheyenne Allen, ID#011016512
 Username: user
 Password: password
 
--To check what user is currently logged into the application, on the page (/mainscreen), view under the header the banner for "Current User," followed by the username.
+-To check what user is currently logged into the application, view under the header the banner for "Current User," followed by the username.
 
 -There are two primary sections on the home page: Products and Additions. Products represent items available to customers for purchase; additions represent items used to modify products and cannot be purchased directly. The table in each section represents current inventory of each item and its price. It also provides options to update the item's details, delete the item, or purchase a product. Each section offers the ability to add a new product or addition.
 
