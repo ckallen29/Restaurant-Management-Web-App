@@ -16,9 +16,6 @@ import java.util.List;
 
 /**
  *
- *
- *
- *
  */
 
 @Controller
@@ -29,21 +26,22 @@ public class MainScreenControllerr {
 
     public MainScreenControllerr(PartService partService,
                                  ProductService productService,
-                                 CustomUserDetailsService customUserDetailsService){
-        this.partService=partService;
-        this.productService=productService;
-        this.customUserDetailsService=customUserDetailsService;
+                                 CustomUserDetailsService customUserDetailsService) {
+        this.partService = partService;
+        this.productService = productService;
+        this.customUserDetailsService = customUserDetailsService;
     }
+
     @GetMapping("/mainscreen")
-    public String listPartsandProducts(Model theModel, @Param("partkeyword") String partkeyword, @Param("productkeyword") String productkeyword){
+    public String listPartsandProducts(Model theModel, @Param("partkeyword") String partkeyword, @Param("productkeyword") String productkeyword) {
         //add to the sprig model
-        List<Part> partList=partService.listAll(partkeyword);
-        theModel.addAttribute("parts",partList);
-        theModel.addAttribute("partkeyword",partkeyword);
-    //    theModel.addAttribute("products",productService.findAll());
-        List<Product> productList=productService.listAll(productkeyword);
+        List<Part> partList = partService.listAll(partkeyword);
+        theModel.addAttribute("parts", partList);
+        theModel.addAttribute("partkeyword", partkeyword);
+        //theModel.addAttribute("products",productService.findAll());
+        List<Product> productList = productService.listAll(productkeyword);
         theModel.addAttribute("products", productList);
-        theModel.addAttribute("productkeyword",productkeyword);
+        theModel.addAttribute("productkeyword", productkeyword);
 
         // display current user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
